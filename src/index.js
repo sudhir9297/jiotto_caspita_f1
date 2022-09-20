@@ -303,9 +303,9 @@ async function setupViewer() {
         },
       })
       .to(modelPosition, {
-        x: 1.47,
-        y: -0.63,
-        z: 0.82,
+        x: 0.0,
+        y: -0.21,
+        z: 0.0,
         scrollTrigger: {
           trigger: ".third",
           start: "top bottom",
@@ -316,9 +316,9 @@ async function setupViewer() {
         onUpdate,
       })
       .to(modelRotation, {
-        x: 0,
-        y: 1.663,
-        z: 0,
+        x: 0.0,
+        y: 0,
+        z: -1.57,
         scrollTrigger: {
           trigger: ".third",
           start: "top bottom",
@@ -326,125 +326,83 @@ async function setupViewer() {
           scrub: true,
           immediateRender: false,
         },
+      })
+
+      .to(modelPosition, {
+        x: 1.71,
+        y: -0.69,
+        z: 0.78,
+        scrollTrigger: {
+          trigger: ".four",
+          start: "top bottom",
+          end: "top top",
+          scrub: true,
+          immediateRender: false,
+        },
+        onUpdate,
+      })
+      .to(modelRotation, {
+        x: 0,
+        y: 1.729,
+        z: 0,
+        scrollTrigger: {
+          trigger: ".four",
+          start: "top bottom",
+          end: "top top",
+          scrub: true,
+          immediateRender: false,
+        },
+      })
+      .to(modelPosition, {
+        x: 1.64,
+        y: -0.25,
+        z: 0.87,
+        scrollTrigger: {
+          trigger: ".five",
+          start: "top bottom",
+          end: "top top",
+          scrub: true,
+          immediateRender: false,
+        },
+        onUpdate,
+      })
+      .to(modelRotation, {
+        x: -0.785,
+        y: 2.312,
+        z: 0.903,
+        scrollTrigger: {
+          trigger: ".five",
+          start: "top bottom",
+          end: "top top",
+          scrub: true,
+          immediateRender: false,
+        },
+      })
+      .to(modelPosition, {
+        x: 1.9,
+        y: -0.71,
+        z: -0.56,
+        scrollTrigger: {
+          trigger: ".six",
+          start: "top bottom",
+          end: "top top",
+          scrub: true,
+          immediateRender: false,
+        },
+        onUpdate,
+      })
+      .to(modelRotation, {
+        x: -0.176,
+        y: 4.922,
+        z: -0.203,
+        scrollTrigger: {
+          trigger: ".six",
+          start: "top bottom",
+          end: "top top",
+          scrub: true,
+          immediateRender: false,
+        },
       });
-    // .to(modelPosition, {
-    //   x: 0,
-    //   y: -0.63,
-    //   z: 0,
-    //   scrollTrigger: {
-    //     trigger: ".four",
-    //     start: "top bottom",
-    //     end: "top top",
-    //     scrub: true,
-    //     immediateRender: false,
-    //   },
-    //   onUpdate,
-    // })
-    // .to(modelRotation, {
-    //   x: 0,
-    //   y: 0,
-    //   z: 0,
-    //   scrollTrigger: {
-    //     trigger: ".four",
-    //     start: "top bottom",
-    //     end: "top top",
-    //     scrub: true,
-    //     immediateRender: false,
-    //   },
-    // });
-
-    // .to(position, {
-    //   x: 0.0804048402,
-    //   y: -0.4764409517,
-    //   z: 5.867911129,
-    //   scrollTrigger: {
-    //     trigger: ".third",
-    //     start: "top bottom",
-    //     end: "top top",
-    //     scrub: true,
-    //     immediateRender: false,
-    //   },
-    //   onUpdate,
-    // })
-    // .to(target, {
-    //   x: 1.0577207057,
-    //   y: -0.1224391666,
-    //   z: 0.5885970371,
-    //   scrollTrigger: {
-    //     trigger: ".third",
-    //     start: "top bottom",
-    //     end: "top top",
-    //     scrub: true,
-    //     immediateRender: false,
-    //   },
-    // })
-
-    // .to(modelPosition, {
-    //   x: -2,
-    //   y: -1,
-    //   z: 0,
-    //   scrollTrigger: {
-    //     trigger: ".four",
-    //     start: "top bottom",
-    //     end: "top top",
-    //     scrub: true,
-    //     immediateRender: false,
-    //   },
-    //   onUpdate,
-    // })
-    // .to(position, {
-    //   x: -0.0593327237,
-    //   y: 5.7109014543,
-    //   z: -0.0618609263,
-    //   scrollTrigger: {
-    //     trigger: ".four",
-    //     start: "top bottom",
-    //     end: "top top",
-    //     scrub: true,
-    //     immediateRender: false,
-    //   },
-    //   onUpdate,
-    // })
-    // .to(target, {
-    //   x: -0.1292888874,
-    //   y: -0.1224397683,
-    //   z: -0.0624858106,
-    //   scrollTrigger: {
-    //     trigger: ".four",
-    //     start: "top bottom",
-    //     end: "top top",
-    //     scrub: true,
-    //     immediateRender: false,
-    //   },
-    // })
-
-    // .to(position, {
-    //   x: 0.3619849159,
-    //   y: 0.2848419386,
-    //   z: -4.8679337022,
-
-    //   scrollTrigger: {
-    //     trigger: ".five",
-    //     start: "top bottom",
-    //     end: "top top",
-    //     scrub: true,
-    //     immediateRender: false,
-    //   },
-    //   onUpdate,
-    // });
-
-    // .to(target, {
-    //   x: 0.9456145574,
-    //   y: -0.1650833494,
-    //   z: -0.0908099508,
-    //   scrollTrigger: {
-    //     trigger: ".five",
-    //     start: "top bottom",
-    //     end: "top top",
-    //     scrub: true,
-    //     immediateRender: false,
-    //   },
-    // });
   }
 
   setupScrollanimation();

@@ -26,6 +26,8 @@ import { Pane } from "tweakpane";
 
 gsap.registerPlugin(ScrollTrigger);
 
+ScrollTrigger.defaults({ scroller: ".mainContainer" });
+
 async function setupViewer() {
   // Initialize the viewer
   const viewer = new ViewerApp({
@@ -44,13 +46,11 @@ async function setupViewer() {
   // Add some plugins
   const manager = await viewer.addPlugin(AssetManagerPlugin);
   const camera = viewer.scene.activeCamera;
-  const position = camera.position;
-  const target = camera.target;
 
   // Add plugins individually.
   await viewer.addPlugin(GBufferPlugin);
   await viewer.addPlugin(new ProgressivePlugin(32));
-  await viewer.addPlugin(new TonemapPlugin(!viewer.useRgbm));
+  // await viewer.addPlugin(new TonemapPlugin(!viewer.useRgbm));
   await viewer.addPlugin(SSRPlugin);
   await viewer.addPlugin(SSAOPlugin);
   await viewer.addPlugin(BloomPlugin);
@@ -90,179 +90,6 @@ async function setupViewer() {
 
   function setupScrollanimation() {
     const tl = gsap.timeline();
-    // FIRST SECTION
-    // tl.to(position, {
-    //   x: 6.2679582376,
-    //   y: -0.3000825538,
-    //   z: -0.0613352655,
-    //   scrollTrigger: {
-    //     trigger: ".second",
-    //     start: "top top",
-    //     end: "top top",
-    //     scrub: true,
-    //     immediateRender: false,
-    //   },
-    //   onUpdate,
-    // })
-    //   // .to(target, {
-    //   //   x: 0.8889835439,
-    //   //   y: -0.1677423829,
-    //   //   z: -0.0885035654,
-    //   //   scrollTrigger: {
-    //   //     trigger: ".first",
-    //   //     start: "top bottom",
-    //   //     end: "top top",
-    //   //     scrub: true,
-    //   //     immediateRender: false,
-    //   //   },
-    //   //   onUpdate,
-    //   // })
-
-    //   // .to(modelPosition, {
-    //   //   x: 0,
-    //   //   y: -1,
-    //   //   z: -1,
-    //   //   scrollTrigger: {
-    //   //     trigger: ".second",
-    //   //     start: "top bottom",
-    //   //     end: "top top",
-    //   //     scrub: true,
-    //   //     immediateRender: false,
-    //   //   },
-    //   //   onUpdate,
-    //   // })
-    //   .to(position, {
-    //     x: 2.0792887274,
-    //     y: 0.8686823658,
-    //     z: 5.2767068977,
-    //     scrollTrigger: {
-    //       trigger: ".second",
-    //       start: "top bottom",
-    //       end: "top top",
-    //       scrub: true,
-    //       immediateRender: false,
-    //     },
-    //     onUpdate,
-    //   })
-    //   // .to(target, {
-    //   //   x: -0.7337104261,
-    //   //   y: -0.0771266666,
-    //   //   z: 0.7982769596,
-    //   //   scrollTrigger: {
-    //   //     trigger: ".second",
-    //   //     start: "top bottom",
-    //   //     end: "top top",
-    //   //     scrub: true,
-    //   //     immediateRender: false,
-    //   //   },
-    //   // })
-
-    //   // Second SECTION
-    //   // .to(modelPosition, {
-    //   //   x: -1.9,
-    //   //   y: -1,
-    //   //   z: 0,
-    //   //   scrollTrigger: {
-    //   //     trigger: ".third",
-    //   //     start: "top bottom",
-    //   //     end: "top top",
-    //   //     scrub: true,
-    //   //     immediateRender: false,
-    //   //   },
-    //   //   onUpdate,
-    //   // })
-    //   .to(position, {
-    //     x: 0.0804048402,
-    //     y: -0.4764409517,
-    //     z: 5.867911129,
-    //     scrollTrigger: {
-    //       trigger: ".third",
-    //       start: "top bottom",
-    //       end: "top top",
-    //       scrub: true,
-    //       immediateRender: false,
-    //     },
-    //     onUpdate,
-    //   })
-    //   // .to(target, {
-    //   //   x: 1.0577207057,
-    //   //   y: -0.1224391666,
-    //   //   z: 0.5885970371,
-    //   //   scrollTrigger: {
-    //   //     trigger: ".third",
-    //   //     start: "top bottom",
-    //   //     end: "top top",
-    //   //     scrub: true,
-    //   //     immediateRender: false,
-    //   //   },
-    //   // })
-
-    //   // .to(modelPosition, {
-    //   //   x: -2,
-    //   //   y: -1,
-    //   //   z: 0,
-    //   //   scrollTrigger: {
-    //   //     trigger: ".four",
-    //   //     start: "top bottom",
-    //   //     end: "top top",
-    //   //     scrub: true,
-    //   //     immediateRender: false,
-    //   //   },
-    //   //   onUpdate,
-    //   // })
-    //   .to(position, {
-    //     x: -0.0593327237,
-    //     y: 5.7109014543,
-    //     z: -0.0618609263,
-    //     scrollTrigger: {
-    //       trigger: ".four",
-    //       start: "top bottom",
-    //       end: "top top",
-    //       scrub: true,
-    //       immediateRender: false,
-    //     },
-    //     onUpdate,
-    //   })
-    //   // .to(target, {
-    //   //   x: -0.1292888874,
-    //   //   y: -0.1224397683,
-    //   //   z: -0.0624858106,
-    //   //   scrollTrigger: {
-    //   //     trigger: ".four",
-    //   //     start: "top bottom",
-    //   //     end: "top top",
-    //   //     scrub: true,
-    //   //     immediateRender: false,
-    //   //   },
-    //   // })
-
-    //   .to(position, {
-    //     x: 0.3619849159,
-    //     y: 0.2848419386,
-    //     z: -4.8679337022,
-
-    //     scrollTrigger: {
-    //       trigger: ".five",
-    //       start: "top bottom",
-    //       end: "top top",
-    //       scrub: true,
-    //       immediateRender: false,
-    //     },
-    //     onUpdate,
-    //   });
-
-    // // .to(target, {
-    // //   x: 0.9456145574,
-    // //   y: -0.1650833494,
-    // //   z: -0.0908099508,
-    // //   scrollTrigger: {
-    // //     trigger: ".five",
-    // //     start: "top bottom",
-    // //     end: "top top",
-    // //     scrub: true,
-    // //     immediateRender: false,
-    // //   },
-    // // });
 
     tl.to(modelPosition, {
       x: 0,
@@ -278,36 +105,11 @@ async function setupViewer() {
       onUpdate,
     })
       .to(modelPosition, {
-        x: 0.99,
-        y: -0.56,
-        z: -1.23,
-        scrollTrigger: {
-          trigger: ".second",
-          start: "top bottom",
-          end: "top top",
-          scrub: true,
-          immediateRender: false,
-        },
-        onUpdate,
-      })
-      .to(modelRotation, {
-        x: 0.3,
-        y: 0.93,
-        z: -0.33,
-        scrollTrigger: {
-          trigger: ".second",
-          start: "top bottom",
-          end: "top top",
-          scrub: true,
-          immediateRender: false,
-        },
-      })
-      .to(modelPosition, {
-        x: 0.0,
+        x: -0.57,
         y: -0.21,
         z: 0.0,
         scrollTrigger: {
-          trigger: ".third",
+          trigger: ".second",
           start: "top bottom",
           end: "top top",
           scrub: true,
@@ -319,6 +121,32 @@ async function setupViewer() {
         x: 0.0,
         y: 0,
         z: -1.57,
+        scrollTrigger: {
+          trigger: ".second",
+          start: "top bottom",
+          end: "top top",
+          scrub: true,
+          immediateRender: false,
+        },
+      })
+
+      .to(modelPosition, {
+        x: 0.99,
+        y: -0.56,
+        z: -1.23,
+        scrollTrigger: {
+          trigger: ".third",
+          start: "top bottom",
+          end: "top top",
+          scrub: true,
+          immediateRender: false,
+        },
+        onUpdate,
+      })
+      .to(modelRotation, {
+        x: 0.3,
+        y: 0.93,
+        z: -0.33,
         scrollTrigger: {
           trigger: ".third",
           start: "top bottom",

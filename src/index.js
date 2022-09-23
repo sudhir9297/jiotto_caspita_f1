@@ -6,18 +6,7 @@ import {
   TonemapPlugin,
   SSRPlugin,
   SSAOPlugin,
-  DiamondPlugin,
-  FrameFadePlugin,
-  GLTFAnimationPlugin,
-  GroundPlugin,
   BloomPlugin,
-  TemporalAAPlugin,
-  AnisotropyPlugin,
-  addBasePlugins,
-  ITexture,
-
-  // Color, // Import THREE.js internals
-  // Texture, // Import THREE.js internals
 } from "webgi";
 import "./styles.css";
 import gsap from "gsap";
@@ -25,32 +14,32 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Pane } from "tweakpane";
 
 gsap.registerPlugin(ScrollTrigger);
-
 ScrollTrigger.defaults({ scroller: ".mainContainer" });
 
 async function setupViewer() {
   // Initialize the viewer
   const viewer = new ViewerApp({
     canvas: document.getElementById("webgi-canvas"),
-    useRgbm: true,
+    useRgbm: false,
     isAntialiased: true,
   });
 
-  const data = {
-    position: { x: 0, y: 0, z: 0 },
-    rotation: { x: 0, y: 0, z: 0 },
-  };
+  // const data = {
+  //   position: { x: 0, y: 0, z: 0 },
+  //   rotation: { x: 0, y: 0, z: 0 },
+  // };
 
   // const pane = new Pane();
 
   // Add some plugins
   const manager = await viewer.addPlugin(AssetManagerPlugin);
+
   const camera = viewer.scene.activeCamera;
 
   // Add plugins individually.
   await viewer.addPlugin(GBufferPlugin);
   await viewer.addPlugin(new ProgressivePlugin(32));
-  // await viewer.addPlugin(new TonemapPlugin(!viewer.useRgbm));
+  // await viewer.addPlugin(new TonemapPlugin(true));
   await viewer.addPlugin(SSRPlugin);
   await viewer.addPlugin(SSAOPlugin);
   await viewer.addPlugin(BloomPlugin);
@@ -59,7 +48,6 @@ async function setupViewer() {
   // await addBasePlugins(viewer);
 
   viewer.renderer.refreshPipeline();
-
   const model = await manager.addFromPath("./assets/scene.glb");
   const object3d = model[0].modelObject;
   const modelPosition = object3d.position;
@@ -104,6 +92,7 @@ async function setupViewer() {
       },
       onUpdate,
     })
+
       .to(modelPosition, {
         x: -0.57,
         y: -0.21,
@@ -117,6 +106,19 @@ async function setupViewer() {
         },
         onUpdate,
       })
+
+      .to(".section--one--container2", {
+        opacity: 0,
+        scrollTrigger: {
+          trigger: ".second",
+          start: "top bottom",
+          end: "top center",
+          scrub: true,
+          immediateRender: false,
+        },
+        onUpdate,
+      })
+
       .to(modelRotation, {
         x: 0.0,
         y: 0,

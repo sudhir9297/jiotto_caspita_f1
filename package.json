@@ -5,7 +5,8 @@
   "main": "index.html",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html --no-minify --public-url ./"
+    "build": "parcel build index.html --no-minify --public-url ./",
+    "push-gh-pages": "push-dir --dir=dist --branch=gh-pages --cleanup --verbose"
   },
   "devDependencies": {
     "parcel-bundler": "^1.6.1",
@@ -16,7 +17,6 @@
     "@babel/preset-env": "7.13.8"
   },
   "keywords": [
-
     "javascript"
   ],
   "staticFiles": {
@@ -28,7 +28,9 @@
     ]
   },
   "dependencies": {
+    "gh-pages": "^4.0.0",
     "gsap": "^3.11.1",
+    "push-dir": "^0.4.1",
     "tweakpane": "^3.1.0"
   }
 }

@@ -32,7 +32,7 @@ async function setupViewer() {
   // Initialize the viewer
   const viewer = new ViewerApp({
     canvas: document.getElementById("webgi-canvas"),
-    useRgbm: false,
+    useRgbm: true,
     isAntialiased: true,
   });
 
@@ -41,7 +41,7 @@ async function setupViewer() {
     rotation: { x: 0, y: 0, z: 0 },
   };
 
-  const pane = new Pane();
+  // const pane = new Pane();
 
   // Add some plugins
   const manager = await viewer.addPlugin(AssetManagerPlugin);
@@ -65,28 +65,28 @@ async function setupViewer() {
   const modelPosition = object3d.position;
   const modelRotation = object3d.rotation;
 
-  pane.addInput(data, "position", {
-    x: { step: 0.01 },
-    y: { step: 0.01 },
-    z: { step: 0.01 },
-  });
-  pane.addInput(data, "rotation", {
-    x: { min: -6.28319, max: 6.28319, step: 0.001 },
-    y: { min: -6.28319, max: 6.28319, step: 0.001 },
-    z: { min: -6.28319, max: 6.28319, step: 0.001 },
-  });
+  // pane.addInput(data, "position", {
+  //   x: { step: 0.01 },
+  //   y: { step: 0.01 },
+  //   z: { step: 0.01 },
+  // });
+  // pane.addInput(data, "rotation", {
+  //   x: { min: -6.28319, max: 6.28319, step: 0.001 },
+  //   y: { min: -6.28319, max: 6.28319, step: 0.001 },
+  //   z: { min: -6.28319, max: 6.28319, step: 0.001 },
+  // });
 
-  pane.on("change", (e) => {
-    if (e.presetKey === "rotation") {
-      const { x, y, z } = e.value;
-      modelRotation.set(x, y, z);
-    } else {
-      const { x, y, z } = e.value;
-      modelPosition.set(x, y, z);
-    }
+  // pane.on("change", (e) => {
+  //   if (e.presetKey === "rotation") {
+  //     const { x, y, z } = e.value;
+  //     modelRotation.set(x, y, z);
+  //   } else {
+  //     const { x, y, z } = e.value;
+  //     modelPosition.set(x, y, z);
+  //   }
 
-    onUpdate();
-  });
+  //   onUpdate();
+  // });
 
   function setupScrollanimation() {
     const tl = gsap.timeline();
@@ -131,9 +131,9 @@ async function setupViewer() {
       })
 
       .to(modelPosition, {
-        x: 0.99,
-        y: -0.56,
-        z: -1.23,
+        x: 0.38,
+        y: -0.44,
+        z: -1.06,
         scrollTrigger: {
           trigger: ".third",
           start: "top bottom",
@@ -144,9 +144,9 @@ async function setupViewer() {
         onUpdate,
       })
       .to(modelRotation, {
-        x: 0.3,
-        y: 0.93,
-        z: -0.33,
+        x: 0.403,
+        y: 0.957,
+        z: -0.483,
         scrollTrigger: {
           trigger: ".third",
           start: "top bottom",
@@ -157,9 +157,9 @@ async function setupViewer() {
       })
 
       .to(modelPosition, {
-        x: 1.71,
-        y: -0.69,
-        z: 0.78,
+        x: 0.92,
+        y: -0.64,
+        z: 0.6,
         scrollTrigger: {
           trigger: ".four",
           start: "top bottom",
@@ -170,8 +170,8 @@ async function setupViewer() {
         onUpdate,
       })
       .to(modelRotation, {
-        x: 0,
-        y: 1.729,
+        x: 0.0,
+        y: 1.777,
         z: 0,
         scrollTrigger: {
           trigger: ".four",
@@ -182,9 +182,9 @@ async function setupViewer() {
         },
       })
       .to(modelPosition, {
-        x: 1.64,
-        y: -0.25,
-        z: 0.87,
+        x: -0.1,
+        y: -0.38,
+        z: 0.99,
         scrollTrigger: {
           trigger: ".five",
           start: "top bottom",
@@ -196,7 +196,7 @@ async function setupViewer() {
       })
       .to(modelRotation, {
         x: -0.785,
-        y: 2.312,
+        y: 2.329,
         z: 0.903,
         scrollTrigger: {
           trigger: ".five",
@@ -207,7 +207,7 @@ async function setupViewer() {
         },
       })
       .to(modelPosition, {
-        x: 1.9,
+        x: 0.68,
         y: -0.71,
         z: -0.56,
         scrollTrigger: {
@@ -250,6 +250,14 @@ async function setupViewer() {
       camera.targetUpdated(true);
       needsUpdate = false;
     }
+  });
+
+  // SCROLL TO TOP
+  document.querySelectorAll(".button--footer")?.forEach((item) => {
+    item.addEventListener("click", () => {
+      const container = document.getElementsByClassName("mainContainer");
+      container[0].scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    });
   });
 }
 

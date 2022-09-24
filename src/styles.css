@@ -146,7 +146,9 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform: rotateZ(-90deg);
+  transform: rotateZ(-90deg) translateY(-450px);
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
 }
 
 .second h1 {
@@ -161,6 +163,9 @@ main {
   flex-direction: column;
   align-items: center;
   margin-right: 8%;
+  transition: all 0.5s ease-in-out;
+  transform: translateX(450px);
+  opacity: 0;
 }
 
 .second span {
@@ -191,6 +196,9 @@ main {
 
   width: 30%;
   margin-left: 10%;
+  transform: translateX(-1000px);
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
 }
 
 .third h1 {
@@ -225,6 +233,10 @@ main {
 
   width: 30%;
   margin-right: 10%;
+
+  transform: translateX(1000px);
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
 }
 
 .four h1 {
@@ -252,6 +264,9 @@ main {
 
   width: 30%;
   margin-right: 10%;
+  transform: translateX(1000px);
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
 }
 
 .five h1 {
@@ -281,9 +296,11 @@ main {
 .section--six--container {
   display: flex;
   flex-direction: column;
-
   width: 30%;
   margin-left: 10%;
+  transform: translateX(-1000px);
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
 }
 
 .six h1 {
@@ -334,6 +351,18 @@ footer > a {
 .button--footer:hover {
   background: black;
   color: white;
+}
+
+.resetPosition {
+  transform: translateX(0px);
+  transition: transform 0.5s ease-in-out, opacity 1s ease-in-out;
+  opacity: 1;
+}
+
+.activeRightSpecific {
+  transform: rotateZ(-90deg) translateY(0px);
+  opacity: 1;
+  transition: transform 0.5s ease-in-out, opacity 1s ease-in-out;
 }
 
 #webgi-canvas {

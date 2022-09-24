@@ -107,18 +107,6 @@ async function setupViewer() {
         onUpdate,
       })
 
-      .to(".section--one--container2", {
-        opacity: 0,
-        scrollTrigger: {
-          trigger: ".second",
-          start: "top bottom",
-          end: "top center",
-          scrub: true,
-          immediateRender: false,
-        },
-        onUpdate,
-      })
-
       .to(modelRotation, {
         x: 0.0,
         y: 0,
@@ -145,6 +133,7 @@ async function setupViewer() {
         },
         onUpdate,
       })
+
       .to(modelRotation, {
         x: 0.403,
         y: 0.957,
@@ -171,6 +160,7 @@ async function setupViewer() {
         },
         onUpdate,
       })
+
       .to(modelRotation, {
         x: 0.0,
         y: 1.777,
@@ -208,6 +198,7 @@ async function setupViewer() {
           immediateRender: false,
         },
       })
+
       .to(modelPosition, {
         x: 0.68,
         y: -0.71,
@@ -221,6 +212,7 @@ async function setupViewer() {
         },
         onUpdate,
       })
+
       .to(modelRotation, {
         x: -0.176,
         y: 4.922,
@@ -231,6 +223,81 @@ async function setupViewer() {
           end: "top top",
           scrub: true,
           immediateRender: false,
+        },
+      })
+      .to(".section--one--container1", {
+        opacity: 0,
+        scrollTrigger: {
+          trigger: ".section--one--container1",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+          immediateRender: false,
+        },
+      })
+
+      .to(".section--one--container2", {
+        opacity: 0,
+        scrollTrigger: {
+          trigger: ".second",
+          start: "top bottom",
+          end: "top center",
+          scrub: true,
+          immediateRender: false,
+        },
+      })
+      .to(".section--two--container1", {
+        scrollTrigger: {
+          trigger: ".section--two--container1",
+          start: "top 80%",
+          end: "bottom center",
+          toggleClass: "activeRightSpecific",
+          scrub: true,
+        },
+      })
+      .to(".section--two--container2", {
+        scrollTrigger: {
+          trigger: ".section--two--container2",
+          start: "top 80%",
+          end: "bottom center",
+          toggleClass: "resetPosition",
+          scrub: true,
+        },
+      })
+      .to(".section--three--container", {
+        scrollTrigger: {
+          trigger: ".section--three--container",
+          start: "top 80%",
+          end: "bottom center",
+          toggleClass: "resetPosition",
+          scrub: true,
+        },
+      })
+      .to(".section--four--container", {
+        scrollTrigger: {
+          trigger: ".section--four--container",
+          start: "top 80%",
+          end: "bottom center",
+          toggleClass: "resetPosition",
+          scrub: true,
+        },
+      })
+      .to(".section--five--container ", {
+        scrollTrigger: {
+          trigger: ".section--five--container ",
+          start: "top 80%",
+          end: "bottom center",
+          toggleClass: "resetPosition",
+          scrub: true,
+        },
+      })
+      .to(".section--six--container ", {
+        scrollTrigger: {
+          trigger: ".section--six--container ",
+          start: "top 80%",
+          end: "bottom center",
+          toggleClass: "resetPosition",
+          scrub: true,
         },
       });
   }

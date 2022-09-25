@@ -17,12 +17,12 @@ gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.defaults({ scroller: ".mainContainer" });
 
 async function setupViewer() {
-  // Initialize the viewer
   const viewer = new ViewerApp({
     canvas: document.getElementById("webgi-canvas"),
     useRgbm: false,
     isAntialiased: true,
   });
+  viewer.renderer.displayCanvasScaling = Math.min(window.devicePixelRatio, 1);
 
   // const data = {
   //   position: { x: 0, y: 0, z: 0 },
@@ -31,9 +31,7 @@ async function setupViewer() {
 
   // const pane = new Pane();
 
-  // Add some plugins
   const manager = await viewer.addPlugin(AssetManagerPlugin);
-
   const camera = viewer.scene.activeCamera;
 
   // Add plugins individually.
@@ -47,11 +45,63 @@ async function setupViewer() {
   // or use this to add all main ones at once.
   // await addBasePlugins(viewer);
 
+  // WEBGi loader
+  const importer = manager.importer;
+
+  importer.addEventListener("onProgress", (ev) => {
+    const progressRatio = ev.loaded / ev.total;
+    document
+      .querySelector(".progress")
+      ?.setAttribute("style", `transform: scaleX(${progressRatio})`);
+  });
+
+  importer.addEventListener("onLoad", (ev) => {
+    introAnimation();
+  });
+
   viewer.renderer.refreshPipeline();
   const model = await manager.addFromPath("./assets/scene.glb");
   const object3d = model[0].modelObject;
   const modelPosition = object3d.position;
   const modelRotation = object3d.rotation;
+
+  const loaderElement = document.querySelector(".loader");
+
+  function introAnimation() {
+    const introTL = gsap.timeline();
+    introTL
+      .to(".loader", {
+        x: "150%",
+        duration: 0.8,
+        ease: "power4.inOut",
+        delay: 1,
+      })
+
+      .fromTo(
+        ".header--container",
+        { opacity: 0, y: "-100%" },
+        { opacity: 1, y: "0%", ease: "power1.inOut", duration: 0.8 },
+        "-=1"
+      )
+      .fromTo(
+        ".hero--scroller",
+        { opacity: 0, y: "150%" },
+        { opacity: 1, y: "0%", ease: "power4.inOut", duration: 1 },
+        "-=1"
+      )
+      .fromTo(
+        ".hero--content",
+        { opacity: 0, x: "-50%" },
+        {
+          opacity: 1,
+          x: "0%",
+          ease: "power4.inOut",
+          duration: 1.8,
+          onComplete: setupScrollanimation,
+        },
+        "-=1"
+      );
+  }
 
   // pane.addInput(data, "position", {
   //   x: { step: 0.01 },
@@ -77,31 +127,33 @@ async function setupViewer() {
   // });
 
   function setupScrollanimation() {
+    document.body.removeChild(loaderElement);
+
     const tl = gsap.timeline();
 
     tl.to(modelPosition, {
-      x: 0,
-      y: 0,
+      x: -0.9,
+      y: -0.43,
       z: 0,
       scrollTrigger: {
         trigger: ".first",
         start: "top top",
         end: "top top",
-        scrub: true,
+        scrub: 0.2,
         immediateRender: false,
       },
       onUpdate,
     })
 
       .to(modelPosition, {
-        x: -0.57,
-        y: -0.21,
-        z: 0.0,
+        x: -1.36,
+        y: -0.02,
+        z: -0.22,
         scrollTrigger: {
           trigger: ".second",
           start: "top bottom",
           end: "top top",
-          scrub: true,
+          scrub: 0.2,
           immediateRender: false,
         },
         onUpdate,
@@ -115,20 +167,20 @@ async function setupViewer() {
           trigger: ".second",
           start: "top bottom",
           end: "top top",
-          scrub: true,
+          scrub: 0.2,
           immediateRender: false,
         },
       })
 
       .to(modelPosition, {
         x: 0.38,
-        y: -0.44,
+        y: -0.11,
         z: -1.06,
         scrollTrigger: {
           trigger: ".third",
           start: "top bottom",
           end: "top top",
-          scrub: true,
+          scrub: 0.2,
           immediateRender: false,
         },
         onUpdate,
@@ -137,25 +189,25 @@ async function setupViewer() {
       .to(modelRotation, {
         x: 0.403,
         y: 0.957,
-        z: -0.483,
+        z: -0.421,
         scrollTrigger: {
           trigger: ".third",
           start: "top bottom",
           end: "top top",
-          scrub: true,
+          scrub: 0.2,
           immediateRender: false,
         },
       })
 
       .to(modelPosition, {
         x: 0.92,
-        y: -0.64,
-        z: 0.6,
+        y: -0.31,
+        z: 0.66,
         scrollTrigger: {
           trigger: ".four",
           start: "top bottom",
           end: "top top",
-          scrub: true,
+          scrub: 0.2,
           immediateRender: false,
         },
         onUpdate,
@@ -163,25 +215,25 @@ async function setupViewer() {
 
       .to(modelRotation, {
         x: 0.0,
-        y: 1.777,
+        y: 1.641,
         z: 0,
         scrollTrigger: {
           trigger: ".four",
           start: "top bottom",
           end: "top top",
-          scrub: true,
+          scrub: 0.2,
           immediateRender: false,
         },
       })
       .to(modelPosition, {
         x: -0.1,
-        y: -0.38,
+        y: -0.11,
         z: 0.99,
         scrollTrigger: {
           trigger: ".five",
           start: "top bottom",
           end: "top top",
-          scrub: true,
+          scrub: 0.2,
           immediateRender: false,
         },
         onUpdate,
@@ -194,34 +246,34 @@ async function setupViewer() {
           trigger: ".five",
           start: "top bottom",
           end: "top top",
-          scrub: true,
+          scrub: 0.2,
           immediateRender: false,
         },
       })
 
       .to(modelPosition, {
-        x: 0.68,
-        y: -0.71,
+        x: 0.16,
+        y: -0.3,
         z: -0.56,
         scrollTrigger: {
           trigger: ".six",
           start: "top bottom",
           end: "top top",
-          scrub: true,
+          scrub: 0.2,
           immediateRender: false,
         },
         onUpdate,
       })
 
       .to(modelRotation, {
-        x: -0.176,
-        y: 4.922,
-        z: -0.203,
+        x: -0.261,
+        y: 4.911,
+        z: -0.277,
         scrollTrigger: {
           trigger: ".six",
           start: "top bottom",
           end: "top top",
-          scrub: true,
+          scrub: 0.2,
           immediateRender: false,
         },
       })
@@ -302,24 +354,21 @@ async function setupViewer() {
       });
   }
 
-  setupScrollanimation();
-
   // WEBGI UPDATE
   let needsUpdate = true;
-
   function onUpdate() {
     needsUpdate = true;
     viewer.renderer.resetShadows();
     viewer.setDirty();
   }
 
-  viewer.addEventListener("preFrame", () => {
-    if (needsUpdate) {
-      camera.positionUpdated(true);
-      camera.targetUpdated(true);
-      needsUpdate = false;
-    }
-  });
+  // viewer.addEventListener("preFrame", () => {
+  //   if (needsUpdate) {
+  //     camera.positionUpdated(true);
+  //     camera.targetUpdated(true);
+  //     needsUpdate = false;
+  //   }
+  // });
 
   // SCROLL TO TOP
   document.querySelectorAll(".button--footer")?.forEach((item) => {

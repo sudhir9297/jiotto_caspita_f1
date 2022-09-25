@@ -34,6 +34,23 @@ body {
   border-radius: 2px;
 }
 
+.rotation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+  background-color: var(--grey);
+  font-family: "Orbitron", sans-serif;
+  color: var(--red);
+  display: none;
+}
+
+.rotation p {
+  width: 80%;
+}
+
 .loader {
   display: flex;
   position: absolute;
@@ -68,9 +85,9 @@ body {
   width: 100%;
   justify-content: center;
   font-family: "Orbitron", sans-serif;
-  margin-bottom: 7%;
+  margin-bottom: 1%;
   margin-top: 20px;
-  font-size: 1.5rem;
+  font-size: 3vw;
 }
 
 main {
@@ -96,7 +113,7 @@ main {
 }
 
 .section--one--container1 {
-  width: 1300px;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -107,7 +124,7 @@ main {
 }
 
 .first h1 {
-  font-size: 6rem;
+  font-size: 6vw;
   font-family: "Orbitron", sans-serif;
   color: var(--lightBlack);
 }
@@ -117,7 +134,7 @@ main {
 }
 
 .first p {
-  font-size: 1.5rem;
+  font-size: 2vw;
   font-weight: 400;
   color: var(--lightBlack);
 }
@@ -125,21 +142,22 @@ main {
 .first h3 {
   color: var(--grey);
   position: absolute;
-  font-size: 12rem;
+  font-size: 9vw;
   white-space: nowrap;
   z-index: -1;
   text-transform: uppercase;
-  top: 60%;
+  top: 50%;
 }
 
 .section--one--container2 {
-  width: 1300px;
-  margin-bottom: 8%;
+  width: 70%;
+  margin-bottom: 6%;
   display: flex;
   justify-content: space-between;
 }
 
 .spec--wrapper .name {
+  font-size: 1.5vw;
   font-weight: 400;
   color: var(--lightBlack);
 }
@@ -150,15 +168,15 @@ main {
 }
 
 .value--wrapper .value {
-  font-size: 1.5rem;
+  font-size: 2.3vw;
   font-weight: 200;
   font-family: "Orbitron", sans-serif;
   color: var(--red);
 }
 .value--wrapper .unit {
-  font-size: 12px;
+  font-size: 1vw;
   margin: 0 5px;
-  margin-bottom: 5px;
+  margin-bottom: 0.5vw;
   font-weight: 600;
   color: var(--lightBlack);
 }
@@ -180,7 +198,7 @@ main {
 }
 
 .second h1 {
-  font-size: 6rem;
+  font-size: 5vw;
   font-family: "Orbitron", sans-serif;
   color: var(--lightBlack);
   white-space: 0px;
@@ -197,7 +215,7 @@ main {
 }
 
 .second span {
-  font-size: 8rem;
+  font-size: 6vw;
   font-family: "Orbitron", sans-serif;
   color: var(--red);
   writing-mode: vertical-rl;
@@ -229,25 +247,6 @@ main {
   opacity: 0;
 }
 
-.third h1 {
-  font-size: 6rem;
-  color: var(--red);
-  white-space: 0px;
-  margin-bottom: 20px;
-  line-height: 90px;
-  font-family: "Orbitron", sans-serif;
-  text-transform: uppercase;
-}
-
-.third p {
-  font-size: 20px;
-  color: var(--black);
-  font-weight: 200;
-  line-height: 30px;
-
-  /* width: 100%; */
-}
-
 .rightSide {
   display: flex;
   justify-content: flex-end;
@@ -267,25 +266,6 @@ main {
   opacity: 0;
 }
 
-.four h1 {
-  font-size: 6rem;
-  color: var(--red);
-  white-space: 0px;
-  margin-bottom: 20px;
-  line-height: 90px;
-  font-family: "Orbitron", sans-serif;
-  text-transform: uppercase;
-}
-
-.four p {
-  font-size: 20px;
-  color: var(--black);
-  font-weight: 200;
-  line-height: 30px;
-
-  /* width: 100%; */
-}
-
 .section--five--container {
   display: flex;
   flex-direction: column;
@@ -295,26 +275,6 @@ main {
   transform: translateX(1000px);
   transition: all 0.5s ease-in-out;
   opacity: 0;
-}
-
-.five h1 {
-  font-size: 6rem;
-  color: var(--red);
-  white-space: 0px;
-  margin-bottom: 20px;
-  line-height: 90px;
-  font-family: "Orbitron", sans-serif;
-  text-transform: uppercase;
-}
-
-.five p {
-  font-size: 20px;
-
-  color: var(--lightBlack);
-  font-weight: 200;
-  line-height: 30px;
-
-  /* width: 100%; */
 }
 
 .six {
@@ -331,21 +291,21 @@ main {
   opacity: 0;
 }
 
-.six h1 {
-  font-size: 6rem;
+.title {
+  font-size: 5vw;
+  line-height: 5vw;
   color: var(--red);
   white-space: 0px;
   margin-bottom: 20px;
-  line-height: 90px;
   font-family: "Orbitron", sans-serif;
   text-transform: uppercase;
 }
 
-.six p {
-  font-size: 20px;
+.detail {
+  font-size: 1.5vw;
+  line-height: 2.2vw;
   color: var(--black);
   font-weight: 200;
-  line-height: 30px;
 }
 
 footer {
@@ -401,4 +361,21 @@ footer > a {
 
   pointer-events: none;
   z-index: -1;
+}
+
+@media (max-width: 599px) and (orientation: portrait) {
+  .rotation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 899px) and (orientation: portrait) {
+  .rotation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

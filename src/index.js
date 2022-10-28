@@ -75,32 +75,8 @@ async function setupViewer() {
         duration: 0.8,
         ease: "power4.inOut",
         delay: 1,
+	onComplete: setupScrollanimation,
       })
-
-      .fromTo(
-        ".header--container",
-        { opacity: 0, y: "-100%" },
-        { opacity: 1, y: "0%", ease: "power1.inOut", duration: 0.8 },
-        "-=1"
-      )
-      .fromTo(
-        ".hero--scroller",
-        { opacity: 0, y: "150%" },
-        { opacity: 1, y: "0%", ease: "power4.inOut", duration: 1 },
-        "-=1"
-      )
-      .fromTo(
-        ".hero--content",
-        { opacity: 0, x: "-50%" },
-        {
-          opacity: 1,
-          x: "0%",
-          ease: "power4.inOut",
-          duration: 1.8,
-          onComplete: setupScrollanimation,
-        },
-        "-=1"
-      );
   }
 
   // pane.addInput(data, "position", {
